@@ -15,10 +15,12 @@ from difflib import SequenceMatcher
 from django.views.decorators.csrf import csrf_exempt
 
 import os
+from ast import literal_eval
 
 
 from .models import Repo, Code
 from .forms import RepoForm, CodeForm
+from .generate import generate
 
 def repo_create(request):
     form = RepoForm(request.POST or None)
@@ -63,15 +65,18 @@ def code_list(request,id=None):
     return render(request,"list.html",context)
 
 def submit_model(request):
-    print(request.POST.get('connects'))
-    # f = open("generated/a.py","a+")
-    # f.write("")
-    # f.close()
-    run()
+    connects =literal_eval(request.POST.get('connects'))
+    print(connects)
+    # try:
+    generate(connects)
+    print("File generated at generated/file.py")
+    # except:
+    #     print("Ooops some error in Generating model")
+    # run()
     return HttpResponse('')
 
-def run():
-    os.system('deepin-terminal -e python generated/a.py')
+def train_model(request):
+    os.system('deepin-terminal -e python generated/file.py')
 
 def test_model(request):
     print(request.POST.get('file'))

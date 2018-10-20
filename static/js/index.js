@@ -427,7 +427,7 @@ $(document).ready(function() {
         $("#canvas").append("<div class='window' id='AutoML'>Image Classifier<input class='input' type='text' placeholder='Text input'></div>");
         useless();
     })
-    $("#train").click(function(event){
+    $("#compile").click(function(event){
         event.preventDefault()
                 // console.log(connections)
         
@@ -462,8 +462,6 @@ $(document).ready(function() {
         var fu1 = document.getElementById("fileOutput");
         res = fu1.value.slice(12, );
         // alert("You selected " + res);
-
-
         $.ajax({
             type:"POST",
             url:"http://localhost:8000/test/",
@@ -472,6 +470,21 @@ $(document).ready(function() {
             },
             success: function(){
                console.log("Test Model")
+            }
+       });
+       return true; //<---- move it here
+    
+    })
+
+    $("#train").click(function(event){
+        event.preventDefault();
+       
+        $.ajax({
+            type:"POST",
+            url:"http://localhost:8000/train/",
+            data: true,
+            success: function(){
+               console.log("Train Model")
             }
        });
        return true; //<---- move it here

@@ -1,31 +1,32 @@
-a = [["input", "mnist", "model", ""], ["model", "", "Conv2D", "32"], ["Conv2D", "32", "Conv2D", "64"], ["Conv2D", "64", "MaxPooling2D", ""], ["MaxPooling2D", "", "Dropout", "0.25"], ["Dropout", "0.25", "Flatten", ""], ["Flatten", "", "Dense", ["128", "relu"]], ["Dense", ["128","relu"], "Dropout", "0.5"], ["Dropout", "0.5", "Dense", ["10","softmax"]], ["Dense", ["10","softmax"], "Generate", ""]]
-k = []
-print(len(a))
-for i in range(len(a)):
-	if(a[i][0]=="input"):
-		k.append(a[i])
-	# find(a[i][1]=="input")
+# a = [["input", "mnist", "model", ""], ["model", "", "Conv2D", "32"], ["Conv2D", "32", "Conv2D", "64"], ["Conv2D", "64", "MaxPooling2D", ""], ["MaxPooling2D", "", "Dropout", "0.25"], ["Dropout", "0.25", "Flatten", ""], ["Flatten", "", "Dense", ["128", "relu"]], ["Dense", ["128","relu"], "Dropout", "0.5"], ["Dropout", "0.5", "Dense", ["10","softmax"]], ["Dense", ["10","softmax"], "Generate", ""]]
+def order(a):
+	print(a)
+	k = []
+	print(len(a))
+	print("converting to array")
+	for i in range(len(a)):
+		print(a[i][0])
+		if(a[i][0]=="Input"):
+			k.append(a[i])
+	print(k)
+	f = k[-1][2]
 
-# k.append(a[0])
-# print(k)
-# print(k[-1][2])
-f = k[-1][2]
-# print(len(a))
-for i in range(len(a)):
-	for j in range(len(a)):
-		f = k[-1][2]
-		l = k[-1][3]
-		if f == a[j][0] and l== a[j][1]:
-		# print(i)
-			k.append(a[j])
-# print(k)
-arr = k
-print(arr)
+	for i in range(len(a)):
+		for j in range(len(a)):
+			f = k[-1][2]
+			l = k[-1][3]
+			if f == a[j][0] and l== a[j][1]:
+				k.append(a[j])
+	arr = k
+	print(arr)
+	return arr
 
 
-def fun(arr):
+def generate(arr):
+	print(arr)
+	arr = order(arr)
 	print("test")
-	f = open('file.py', "w+")
+	f = open('generated/file.py', "w+")
 	# f.write("from __future__ import print_function\n")
 	f.write("import keras\n")
 	f.write("from keras.datasets import mnist\n")
@@ -41,7 +42,7 @@ def fun(arr):
 		# print("done")
 		b = x
 		# print(b)
-		if b[0] == "input":
+		if b[0] == "Input":
 			if b[1] == "mnist":
 				f.write("(x_train, y_train), (x_test, y_test) = mnist.load_data()\n")
 				f.write("x_train = x_train.reshape(x_train.shape+(1,))\n")
@@ -88,4 +89,4 @@ def fun(arr):
 			f.write("model.save('my_model.h5')\n")
 	f.close()
 
-fun(arr)
+# generate(a)
