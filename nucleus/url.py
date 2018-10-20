@@ -10,6 +10,7 @@ from .views import (
 	train_model,
 	save_model,
 	repo_list,
+	api,
 	)
 app_name = "nucleus"
 
@@ -21,4 +22,5 @@ urlpatterns = [
 	url(r'train/$', train_model,name="train"),
 	url(r'save/$', save_model,name="save"),
 	url(r'^$', repo_list,name="world"),
+	url(r'^api/$',api,name="api"),
 	]
