@@ -8,6 +8,7 @@ from django.urls import reverse
 class Repo(models.Model):
     title = models.CharField(max_length=60)
     description = models.TextField()
+    saved_model = models.TextField(default="")
     last_modified = models.DateTimeField(auto_now_add=False, auto_now=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     user=models.CharField(max_length=120,default="Annonymous")

@@ -20,7 +20,7 @@ from ast import literal_eval
 
 from .models import Repo, Code
 from .forms import RepoForm, CodeForm
-from .generate import generate
+from .generate import generate,order
 
 def repo_create(request):
     form = RepoForm(request.POST or None)
@@ -55,12 +55,11 @@ def code_list(request,id=None):
     # if not request.user.is_authenticated:
     #     return HttpResponseRedirect("/accounts/login")
     repo = get_object_or_404(Repo,id=id)
-    print("yay")
-
-    code = Code.objects.filter(repo=repo)
+    model = literal_eval(repo.saved_model)
+    # print(model[0][0])
     context={
         "repo":repo,
-        "code":code,
+        "model": model,
     }
     return render(request,"list.html",context)
 
@@ -83,3 +82,26 @@ def test_model(request):
     file  = request.POST.get('file')
     os.system('deepin-terminal -e python generated/test.py data/' + file )
     return HttpResponse('')
+
+def save_model(request):
+    connects =literal_eval(request.POST.get('connects'))
+    id =request.POST.get('id')
+    id = int(id[22:])
+    print(id)
+    
+    print("Saving Model")
+    print(connects)
+    ordered = order(connects)
+    print("After ordering the model is")
+    print(ordered)
+    print("---------------")
+    print("---------------")
+    repo = get_object_or_404(Repo, id= id)
+    print(repo)
+    print(repo.saved_model)
+    print(repo.description)
+    repo.saved_model = ordered
+    repo.save()
+
+    return HttpResponse('')
+

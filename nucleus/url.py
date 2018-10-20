@@ -8,6 +8,7 @@ from .views import (
 	submit_model,
 	test_model,
 	train_model,
+	save_model,
 	)
 app_name = "nucleus"
 
@@ -17,4 +18,5 @@ urlpatterns = [
 	url(r'submit/$', submit_model,name="submit"),
 	url(r'test/$', test_model,name="test"),
 	url(r'train/$', train_model,name="train"),
+	url(r'save/$', save_model,name="save"),
 	]

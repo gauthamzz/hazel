@@ -260,7 +260,7 @@ jsPlumb.ready(function () {
         var exampleColor = "#00f";
         var exampleEndpoint = {
             endpoint: "Rectangle",
-            paintStyle: { width: 8, height: 8, fill: exampleColor },
+            paintStyle: { width: 10, height: 20, fill: exampleColor },
             isSource: true,
             anchor: "Right",
             reattach: true,
@@ -284,7 +284,7 @@ jsPlumb.ready(function () {
 
         var example3Color = "rgba(229,219,61,0.5)";
         var exampleEndpoint3 = {
-            endpoint: ["Dot", {radius: 8} ],
+            endpoint: ["Dot", {radius: 15} ],
             anchor: "Left",
             paintStyle: { fill: example3Color, opacity: 0.5 },
             isSource: true,
@@ -306,7 +306,7 @@ jsPlumb.ready(function () {
 
         var example2Color = "rgba(0,219,61,0.5)";
         var exampleEndpoint2 = {
-            endpoint: ["Dot", {radius: 8} ],
+            endpoint: ["Dot", {radius: 15} ],
             anchor: [0,0.8,1,0],
             paintStyle: { fill: example2Color, opacity: 0.5 },
             isSource: true,
@@ -490,5 +490,39 @@ $(document).ready(function() {
        return true; //<---- move it here
     
     })
+
+
+    $("#save").click(function(event){
+        event.preventDefault()
+                // console.log(connections)
+    console.log("Saving Model")
+    var connects = []
+    for(let j =0;j<connections.length;j++){
+        var val1="";
+        var val2="";
+        $(`#${connections[j].sourceId}`).find('input[type=text]').each(function(){
+            val1=$(this).val();
+          });
+          $(`#${connections[j].targetId}`).find('input[type=text]').each(function(){
+            val2=$(this).val();
+          });
+        connects.push([connections[j].sourceId,val1,connections[j].targetId,val2])
+        // console.log(connections[j].sourceId + " to " + connections[j].targetId)
+        console.log(connects)
+}
+
+         $.ajax({
+              type:"POST",
+              url:"http://localhost:8000/save/",
+              data:  {
+                  'connects':JSON.stringify(connects),
+                   'id': window.location.href
+                },
+              success: function(){
+                 console.log("Train Model")
+              }
+         });
+         return true; //<---- move it here
+    });
 
 });

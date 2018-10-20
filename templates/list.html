@@ -21,13 +21,11 @@
                             Home
                         </a>
                         
-                        <a class="navbar-item" href="{{ request.path }}/add">
-                            Add item
+                        <a class="navbar-item" id="save"">
+                            Save Model
                         </a>
 
-                        <a class="navbar-item" href="{{ request.path }}/edit">
-                            Edit
-                        </a>
+                      
                      
                     </div>
                 </div>
@@ -66,8 +64,23 @@
                         <a class="" id="">
                             Cloud<span class="tag is-rounded is-primary is-small">Coming Soon</span></a>
                             </ul>
-                        <input type="file" id="fileOutput" name="file" multiple>
+                            <div class="file has-name is-boxed">
+                                    <label class="file-label">
+                                      <input class="file-input"  id="fileOutput" type="file" name="resume">
+                                      <span class="file-cta">
+                                        <span class="file-icon">
+                                          <i class="fas fa-upload"></i>
+                                        </span>
+                                        <span class="file-label">
+                                          Choose a file
+                                        </span>
+                                      </span>
+                                      
+                                    </label>
+                                  </div>
+                        <!-- <input type="file" class="input" id="fileOutput" name="file" multiple> -->
                         <a class="is-active" id="test">Test</a>
+                        
                         
                         <p class="menu-label">
                            Add Components
@@ -102,7 +115,54 @@
                     <div class="window" id="dragDropWindow3">three<br/><br/><input class="input" type="text" placeholder="Text input"><a href="#" class="cmdLink hide" rel="dragDropWindow3">toggle connections</a><br/><a href="#" class="cmdLink drag" rel="dragDropWindow3">disable dragging</a><br/><a href="#" class="cmdLink detach" rel="dragDropWindow3">detach all</a></div>
                     <div class="window" id="dragDropWindow4">four<br/><br/><input class="input" type="text" placeholder="Text input"><a href="#" class="cmdLink hide" rel="dragDropWindow4">toggle connections</a><br/><a href="#" class="cmdLink drag" rel="dragDropWindow4">disable dragging</a><br/><a href="#" class="cmdLink detach" rel="dragDropWindow4">detach all</a></div>
                      -->
+
+                               
+             {% with model|last as last %}
+             <div class='window' id={{ last.2 }}>
+                     {{ last.2 }}
+                        
+                        <input class='input' type='text' placeholder='Text input'>
+             </div>
+             {% endwith %}
                     
+                     {%for obj in model %}
+                     <div class='window' id={{ obj.0 }}>
+                         {{ obj.0 }}
+                    
+                    <input class='input' type='text' placeholder='Text input'></div>
+
+  <script type="text/javascript">
+
+    var targetOption = {anchor:"TopCenter",
+    maxConnections:-1,
+    isSource:false,
+    isTarget:true,
+    endpoint:["Dot", {radius:8}],
+    paintStyle:{fillStyle:"#66FF00"},
+    setDragAllowedWhenFull:true}
+  
+    var sourceOption = {anchor:"BottomCenter",
+    maxConnections:-1,
+    isSource:true,
+    isTarget:false,
+    endpoint:["Dot", {radius:8}],
+    paintStyle:{fillStyle:"#FFEF00"},
+    setDragAllowedWhenFull:true}
+  
+  
+     jsPlumb.bind("ready", function() {
+  
+    jsPlumb.addEndpoint( {{ obj.0 }}, targetOption);
+    jsPlumb.addEndpoint( {{ obj.2 }}, sourceOption);
+
+    jsPlumb.draggable({{ obj.0 }});
+    jsPlumb.draggable({{ obj.2 }}); 
+    });
+  
+    </script>
+                     {% endfor %}
+                    
+         
                 </div>
             </div>
         <div class="columns has-text-centered is-multiline ">
