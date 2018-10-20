@@ -1,4 +1,3 @@
-# a = [["input", "mnist", "model", ""], ["model", "", "Conv2D", "32"], ["Conv2D", "32", "Conv2D", "64"], ["Conv2D", "64", "MaxPooling2D", ""], ["MaxPooling2D", "", "Dropout", "0.25"], ["Dropout", "0.25", "Flatten", ""], ["Flatten", "", "Dense", ["128", "relu"]], ["Dense", ["128","relu"], "Dropout", "0.5"], ["Dropout", "0.5", "Dense", ["10","softmax"]], ["Dense", ["10","softmax"], "Generate", ""]]
 def order(a):
 	print(a)
 	k = []
@@ -36,6 +35,7 @@ def generate(arr):
 	f.write("from keras import backend as K\n")
 	f.write("from autokeras.preprocessor import OneHotEncoder\n")
 	f.write("from keras.models import load_model\n")
+	f.write("from autokeras import ImageClassifier\n")
 	temp = " "
 
 	for x in arr:
@@ -47,6 +47,11 @@ def generate(arr):
 				f.write("(x_train, y_train), (x_test, y_test) = mnist.load_data()\n")
 				f.write("x_train = x_train.reshape(x_train.shape+(1,))\n")
 				f.write("x_test = x_test.reshape(x_test.shape+(1,))\n")
+			if b[2] == "model":
+				val = b[3]
+				# print(val)			
+		if b[0] == "model":
+			if b[1] == val:
 				f.write("y_encode = OneHotEncoder()\n")
 				f.write("def transform_y(y_train):\n")
 				f.write("\ty_encoder = OneHotEncoder()\n")
@@ -55,11 +60,6 @@ def generate(arr):
 				f.write("\treturn y_train\n")
 				f.write("y_test = transform_y(y_test)\n")
 				f.write("y_train = transform_y(y_train)\n")
-			if b[2] == "model":
-				val = b[3]
-				# print(val)			
-		if b[0] == "model":
-			if b[1] == val:
 				f.write("model = Sequential()\n")
 				# print(b[2])							
 				if b[2] == "Conv2D":
@@ -87,6 +87,11 @@ def generate(arr):
 			f.write("print('Test loss:', score[0])\n")
 			f.write("print('Test accuracy:', score[1])\n")
 			f.write("model.save('my_model.h5')\n")
+		if b[2] == "AutoML":
+			f.write("clf = ImageClassifier(verbose=True, augment=False)\n")
+			f.write("clf.fit(x_train, y_train, time_limit=12 * 60 * 60)\n")
+			f.write("clf.final_fit(x_train, y_train, x_test, y_test, retrain=True)\n")
+			f.write("y = clf.evaluate(x_test, y_test)\n")
 	f.close()
 
 # generate(a)
