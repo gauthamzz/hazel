@@ -415,8 +415,8 @@ $(document).ready(function() {
         useless();
 
     })
-    $("#label").click(function(){
-        $("#canvas").append("<div class='window' id='Label'>Label<input class='input' type='text' placeholder='Text input'></div>");
+    $("#mnsit").click(function(){
+        $("#canvas").append("<div class='window' id='Mnsit'>MNSIT MODEL<input class='input' type='text' placeholder='Text input'></div>");
         useless();
     })
     $("#output").click(function(){

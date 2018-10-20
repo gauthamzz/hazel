@@ -36,6 +36,7 @@ def generate(arr):
 	f.write("from autokeras.preprocessor import OneHotEncoder\n")
 	f.write("from keras.models import load_model\n")
 	f.write("from autokeras import ImageClassifier\n")
+	f.write("import tensorflow\n")
 	temp = " "
 
 	for x in arr:
@@ -43,7 +44,7 @@ def generate(arr):
 		b = x
 		# print(b)
 		if b[0] == "Input":
-			if b[1] == "mnist":
+			if b[1] == "mnsit":
 				f.write("(x_train, y_train), (x_test, y_test) = mnist.load_data()\n")
 				f.write("x_train = x_train.reshape(x_train.shape+(1,))\n")
 				f.write("x_test = x_test.reshape(x_test.shape+(1,))\n")
@@ -92,6 +93,30 @@ def generate(arr):
 			f.write("clf.fit(x_train, y_train, time_limit=12 * 60 * 60)\n")
 			f.write("clf.final_fit(x_train, y_train, x_test, y_test, retrain=True)\n")
 			f.write("y = clf.evaluate(x_test, y_test)\n")
+		if b[2] == "Mnsit":
+			f.write("y_encode = OneHotEncoder()\n")
+			f.write("def transform_y(y_train):\n")
+			f.write("\ty_encoder = OneHotEncoder()\n")
+			f.write("\ty_encoder.fit(y_train)\n")
+			f.write("\ty_train = y_encoder.transform(y_train)\n")
+			f.write("\treturn y_train\n")
+			f.write("y_test = transform_y(y_test)\n")
+			f.write("y_train = transform_y(y_train)\n")
+			f.write("model = Sequential()\n")
+			f.write("model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=x_train.shape[1:]))\n")
+			f.write("model.add(Conv2D(64, kernel_size=(3, 3), activation='relu'))\n")
+			f.write("model.add(MaxPooling2D(pool_size=(2, 2)))\n")
+			f.write("model.add(Dropout(0.25))\n")
+			f.write("model.add(Flatten())\n")
+			f.write("model.add(Dense(128, activation='relu'))\n")
+			f.write("model.add(Dropout(0.5))\n")
+			f.write("model.add(Dense(y_train.shape[1], activation='softmax'))\n")
+			f.write("model.compile(loss=keras.losses.categorical_crossentropy, optimizer=keras.optimizers.Adadelta(), metrics=['accuracy'])\n")
+			f.write("model.fit(x_train, y_train,epochs=20)\n")
+			f.write("score = model.evaluate(x_test, y_test, verbose=0)\n")
+			f.write("print('Test loss:', score[0])\n")
+			f.write("print('Test accuracy:', score[1])\n")
+			f.write("model.save('my_model.h5')\n")
 	f.close()
 
 # generate(a)

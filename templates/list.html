@@ -7,7 +7,7 @@
                 <div class="navbar-brand">
                     <a class="navbar-item" href="/">
                         <strong>
-                            <i class="em em-sparkles"></i> Hazel </strong>
+                            <i class="em em-sparkles"></i> Hazel  <span class="tag is-rounded is-primary is-small">Alpha</span></strong>
                     </a>
                     <span class="navbar-burger burger" data-target="navbarMenuHeroB">
                         <span> </span>
@@ -24,8 +24,12 @@
                         <a class="navbar-item" id="save"">
                             Save Model
                         </a>
-
-                      
+ 
+                        <a class="navbar-item" id="stars"">
+                                <i class="em em-star"></i>
+                                {{ repo.stars }} Stars  
+                            </a>
+                       
                      
                     </div>
                 </div>
@@ -96,11 +100,16 @@
                         <li><a id="flatten">Flatten</a></li>
                         <li><a id="dense">Dense</a></li>
                         <li><a id="generate">Generate Predicions</a></li>
-                        <li><a id="label">Label</a></li>
-                        <li><a id="output">Output</a></li>
+                        
+                        <!-- <li><a id="output">Output</a></li> -->
 
                       </ul>
-                      
+                      <p class="menu-label">
+                            Add Models 
+                           </p>
+                           <ul class="menu-list">
+                                <li><a id="mnsit">MNSIT classifier<i class="em em-star"></i> 43</a></li>
+                               </ul>
                       
                     </ul>
                 
