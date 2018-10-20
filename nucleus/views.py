@@ -55,7 +55,9 @@ def code_list(request,id=None):
     # if not request.user.is_authenticated:
     #     return HttpResponseRedirect("/accounts/login")
     repo = get_object_or_404(Repo,id=id)
-    model = literal_eval(repo.saved_model)
+    model = ""
+    if repo.saved_model:
+        model = literal_eval(repo.saved_model)
     # print(model[0][0])
     context={
         "repo":repo,
