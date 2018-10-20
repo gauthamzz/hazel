@@ -1,0 +1,202 @@
+{%extends "base.html"%} {%block content%}
+
+<section class="hero is-white is-bold is-small ">
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container is-fluid ">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+
+                        {% comment %}
+                        <img src="https://cdn-images-1.medium.com/max/800/1*g2ckgPbH2nkHHALNBIGaAA.png" alt="Logo"> {% endcomment %}
+                        <strong>
+                            <i class="em em-sparkles"></i>Client Space </strong>
+                    </a>
+                    <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                        <span> </span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <div id="navbarMenuHeroB" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item is-active" href="/">
+                            Home
+                        </a>
+                        <a class="navbar-item" href="create">
+                            Create New Space
+                        </a>
+                        <a class="navbar-item" href="client/add">
+                            Add Client
+                        </a>
+                        <a class="navbar-item" href="accounts/logout">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title">
+
+                Dashboard of {{ user.username }}
+            </h1>
+
+
+        </div>
+    </div>
+
+
+</section>
+<section class="section">
+    <div class="container">
+
+        <div class="columns has-text-centered is-multiline ">
+
+            <div class="column is-3">
+                <div class="card" style="background: url('static/images/{% cycle '8' '2' '3' '4' %}.jpg');   background-size: cover; background-repeat: no-repeat;">
+
+                    <div class="card-content">
+
+                        <p class="title has-text-info">
+                            {{ instance|length }}
+                        </p>
+                        <p class="subtitle">
+                            <span class="tag is-primary">Your</span>
+                            Spaces
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="column is-3">
+                    <div class="card" style="background: url('static/images/7.jpg');   background-size: cover; background-repeat: no-repeat;">
+    
+                        <div class="card-content">
+    
+                            <p class="title has-text-info">
+                                {{ shared|length }}
+                            </p>
+                            <p class="subtitle">
+                                <span class="tag is-info">Shared</span>
+                                Spaces
+                            </p>
+                        </div>
+    
+                    </div>
+                </div>
+        </div>
+        <hr>
+        <section>
+            <h1 class="title has-text-centered">
+                Your Spaces
+            </h1>
+            <br>
+            <div class="columns has-text-centered is-multiline ">
+                {%for object in instance %}
+                <div class="column is-one-quarter">
+                    <div class="card  " style="background: url('static/images/{% cycle '7' '8' '1' '2' '3' '4' '5' '6' %}.jpg');   background-size: cover; background-repeat: no-repeat;">
+                        <a href="{{ object.id }}">
+                            <div class="card-content">
+                                <p class="title">
+                                    {{ object.title }}
+                                </p>
+                                <p class="subtitle">
+                                    {{ object.description }}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+
+
+                </div>
+
+                {% empty %}
+                <div class="column is-4 is-offset-4">
+                        <div class="card  " style="background: url('static/images/{% cycle '8' '3' '2' '4' '7' '6' %}.jpg');   background-size: cover; background-repeat: no-repeat;">
+                            
+                                <div class="card-content">
+                                    <p class="title">
+                                        
+                                    </p>
+                                    <p class="subtitle">
+                                            You don't Have any Spaces!
+                                    </p>
+                                </div>
+                           
+                        </div>
+    
+    
+    
+                    </div>
+                {% endfor%}
+            </div>
+    </div>
+    </section>
+
+
+</section>
+<section>
+    <hr>
+    <section>
+        <div class="container">
+            <h1 class="title has-text-centered">
+                Shared Spaces
+            </h1>
+            <br>
+            <div class="columns has-text-centered is-multiline ">
+                {%for object in shared %}
+                <div class="column is-one-quarter">
+                    <div class="card  " style="background: url('static/images/{% cycle '1' '2' '3' '4' %}.jpg');   background-size: cover; background-repeat: no-repeat;">
+                        <a href="{{ object.galaxy.id }}">
+                            <div class="card-content">
+                                <p class="title">
+                                    {{ object.galaxy }}
+                                </p>
+                                <p class="subtitle">
+                                    Owner {{ object.owner }}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+
+
+                </div>
+                {% empty %}
+                <div class="column is-4 is-offset-4">
+                        <div class="card  " style="background: url('static/images/{% cycle '2' '1' %}.jpg');   background-size: cover; background-repeat: no-repeat;">
+                            
+                                <div class="card-content">
+                                    <p class="title">
+                                        
+                                    </p>
+                                    <p class="subtitle">
+                                            You don't Have any Shared Spaces!
+                                    </p>
+                                </div>
+                           
+                        </div>
+    
+    
+    
+                    </div>
+
+                {% endfor%}
+            </div>
+        </div>
+    </section>
+</section>
+
+<footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+                Copyright 2018  <strong>Client Space</strong> 
+          </p>
+        </div>
+      </footer>
+{%endblock content%}

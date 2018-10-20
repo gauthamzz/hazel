@@ -1,0 +1,82 @@
+{% extends "base.html" %} {% block content %}
+
+<section>
+  <div class="field">
+    <label class="label">Label</label>
+    <div class="control">
+      <input class="input" type="text" placeholder="Text input">
+    </div>
+    <p class="help">This is a help text</p>
+  </div>
+  {% load widget_tweaks %}
+  <form class="form" method="POST" action="">{% csrf_token %}
+    <div class="field">
+
+      <div class="control">
+        Title
+        <font color="red">*</font>
+        {% comment %} {% render_field form.title placeholder="eg: My Awesome Space " class="input" type="email" required="true" %}
+        {% endcomment %} {% render_field form.username placeholder="Username " class="input" %}
+      </div>
+    </div>
+
+
+
+    {% render_field form.password placeholder="Password" type="password" class="form-control" %}
+
+    <a href="/accounts/register" class="link footer-link">Create Account</a>
+
+    <a href="/accounts/password/reset" class="link footer-link">Reset Password?</a>
+
+  </form>
+
+</section>
+
+
+{% endblock %}
+
+
+{% comment %} 
+
+<section class="hero is-white is-bold is-small ">
+  <div class="hero-head">
+      <nav class="navbar">
+          <div class="container is-fluid ">
+              <div class="navbar-brand">
+                  <a class="navbar-item" href="/">
+
+                       <strong>
+                          <i class="em em-sparkles"></i>Client Space </strong>
+                  </a>
+                  <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                      <span> </span>
+                      <span></span>
+                      <span></span>
+                  </span>
+              </div>
+              <div id="navbarMenuHeroB" class="navbar-menu">
+                  <div class="navbar-end">
+                      <a class="navbar-item is-active" href="/">
+                          Home
+                      </a>
+                      
+                  </div>
+              </div>
+          </div>
+      </nav>
+  </div>
+
+  <div class="hero-body">
+      <div class="container has-text-centered">
+          <h1 class="title">
+
+              Login
+          </h1>
+
+
+      </div>
+  </div>
+
+
+</section>
+{% endcomment %}

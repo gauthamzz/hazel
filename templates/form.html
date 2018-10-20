@@ -1,0 +1,105 @@
+{%extends "base.html"%} {%block content%}
+
+<section class="hero  is-bold is-unselectable ">
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <strong><i class="em em-sparkles"></i>Client Space </strong>
+                    </a>
+                </div>
+        </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-1 is-spaced">
+                    Add a new item
+                   
+                </h1>
+                
+                {% load widget_tweaks %}
+                <form action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
+
+                    <div>
+
+                        <div class="field">
+
+                            <div class="control">
+                                Title
+                                <font color="red">*</font>
+                                {% render_field form.title placeholder="eg: My Awesome Space " class="input" type="email" required="true" %}
+
+                            </div>
+                        </div>
+                        <div class="field">
+                            URL
+                            <font color="red">*</font>
+                            <div class="control">
+                                {% render_field form.url placeholder="https://google.com" class="input" minLength="5" required="true" %}
+                            </div>
+                        </div>
+                        <div class="field">
+                            Description
+                            <font color="red">*</font>
+                            <div class="control">
+                                {% render_field form.description placeholder="Describe about this space" class="textarea" minLength="20" required="true" %}
+                            </div>
+                        </div>
+        
+                        <div class="columns">
+                            <div class="column">
+                                Open Link in 
+                                <font color="red">*</font>
+                                <div class="select">
+                                    {% render_field form.open_link class="option"%}
+                                </div>
+
+                            </div>
+                            <div class="column">
+                                Status
+                                <font color="red">*</font>
+                                <div class="select">
+                                    {% render_field form.status class="Option" %}
+                                </div>
+
+                            </div>
+                            <div class="column">
+                                {% render_field form.is_displayed class="checkbox" data-on-label="Yes" data-off-label="No" %} Displayed
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                    
+                      
+                    <section class="hero is-medium">
+                        <div class="hero-body">
+                            <div class="container has-text-centered">
+                                <input type='submit' class="button is-success is-large" value='Create' />
+
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+</section>
+
+<footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                Copyright 2018
+                <strong>Client Space</strong>
+            </p>
+        </div>
+    </footer>
+
+ {%endblock content%}

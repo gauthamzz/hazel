@@ -1,0 +1,48 @@
+{%load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/png" href="">
+  <meta https-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <meta name="twitter:image:height" content="141">
+
+  <title>{% block head_title %}Client Space{% endblock head_title%}</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport'
+  />
+
+
+
+  <link href={% static "css/bulma.css" %} rel="stylesheet" />
+  <link href={% static "css/test.css" %} rel="stylesheet" />
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+ 
+
+
+<body>
+
+  {% comment %} {%include "messages_display.html"%} {% endcomment %}
+  <!--  -->
+  
+  {%block content%}{%endblock content%}
+
+  
+ 
+  <script src={% static "js/jquery.min.js" %} ></script>
+  <!-- <script src='https://jsplumbtoolkit.com/lib/jsplumb.js'></script> -->
+  <script src={% static "js/jsplumb.min.js" %} ></script>
+  <script src={% static "js/index.js" %} ></script>
+
+  
+
+</body>
+</html>

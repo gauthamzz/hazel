@@ -1,0 +1,63 @@
+{%extends "base.html"%} {%block content%}
+
+<section class="hero  is-bold is-unselectable ">
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <strong><i class="em em-sparkles"></i> Hazel </strong>
+                    </a>
+                </div>
+        </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-1 is-spaced">
+                    Create a new repo
+                   
+                </h1>
+                
+                {% load widget_tweaks %}
+                <form action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
+
+                    <div>
+
+                        <div class="field">
+
+                            <div class="control">
+                                Title
+                                <font color="red">*</font>
+                                {% render_field form.title placeholder="eg: My Awesome Space " class="input"  required="true" %}
+
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            Description
+                            <font color="red">*</font>
+                            <div class="control">
+                                {% render_field form.description placeholder="Describe about this space" class="input" minLength="1" required="true" %}
+                            </div>
+                        </div>
+                  
+                    </div>
+                      <br>
+                    
+                            <div class="container has-text-centered">
+                                <input type='submit' class="button is-info is-large" value='Create' />
+
+                            </div>
+                   
+
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+</section>
+
+ {%endblock content%}

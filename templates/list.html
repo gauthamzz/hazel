@@ -1,0 +1,152 @@
+{%extends "base.html"%} {%block content%}
+
+<section class="hero is-white is-bold is-small ">
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container is-fluid ">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <strong>
+                            <i class="em em-sparkles"></i> Hazel </strong>
+                    </a>
+                    <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                        <span> </span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <div id="navbarMenuHeroB" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item is-active" href="/">
+                            Home
+                        </a>
+                        
+                        <a class="navbar-item" href="{{ request.path }}/add">
+                            Add item
+                        </a>
+
+                        <a class="navbar-item" href="{{ request.path }}/edit">
+                            Edit
+                        </a>
+                     
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title">
+
+                {{ repo.title }}
+            </h1>
+            <p class="subtitle">
+                {{ repo.description }}
+            </p>
+
+
+        </div>
+    </div>
+
+</section>
+<section class="section">
+        <div class="columns">
+                <div class="column is-2" s>
+            <aside class="menu">
+                    <p class="menu-label">
+                      Train
+                    </p>
+                    
+                    <ul class="menu-list">
+                      <li>
+                            <ul class="menu-list">
+                        <a class="" id="train">Local</a>
+                        <a class="" id="">
+                            Cloud<span class="tag is-rounded is-primary is-small">Coming Soon</span></a>
+                            </ul>
+                        <input type="file" id="fileOutput" name="file" multiple>
+                        <a class="is-active" id="test">Test</a>
+                        <p class="menu-label">
+                           Add Components
+                          </p>
+                      <ul class="menu-list">
+                        <li><a id="dash">Dashboard</a></li>
+                        <li><a id="input">Input</a></li>
+                        <li><a id="automl">AutoML Image Classifier</a></li>
+                        <li><a id="model">Model</a></li>
+                        <li><a id="conv2D">Conv2D</a></li>
+                        <li><a id="maxPooling2D">MaxPooling2D</a></li>
+                        <li><a id="dropout">Dropout</a></li>
+                        <li><a id="flatten">Flatten</a></li>
+                        <li><a id="dense">Dense</a></li>
+                        <li><a id="generate">Generate Predicions</a></li>
+                        <li><a id="label">Label</a></li>
+                        <li><a id="output">Output</a></li>
+
+                      </ul>
+                      
+                      
+                    </ul>
+                
+                  </aside>
+    </div>
+    <div class="container column" style="max-height:500px;max-width:1000px;overflow:hidden">
+            <div class="jtk-demo-canvas canvas-wide drag-drop-demo jtk-surface jtk-surface-nopan" id="canvas">
+                    <!-- <div class="window" id="dragDropWindow1">one<br/><br/>
+                        <input class="input" type="text" placeholder="Text input">
+                        <a href="#" class="cmdLink hide" rel="dragDropWindow1">toggle connections</a><br/><a href="#" class="cmdLink drag" rel="dragDropWindow1">disable dragging</a><br/><a href="#" class="cmdLink detach" rel="dragDropWindow1">detach all</a></div>
+                    <div class="window" id="dragDropWindow2">two<br/><br/><input class="input" type="text" placeholder="Text input"><a href="#" class="cmdLink hide" rel="dragDropWindow2">toggle connections</a><br/><a href="#" class="cmdLink drag" rel="dragDropWindow2">disable dragging</a><br/><a href="#" class="cmdLink detach" rel="dragDropWindow2">detach all</a></div>
+                    <div class="window" id="dragDropWindow3">three<br/><br/><input class="input" type="text" placeholder="Text input"><a href="#" class="cmdLink hide" rel="dragDropWindow3">toggle connections</a><br/><a href="#" class="cmdLink drag" rel="dragDropWindow3">disable dragging</a><br/><a href="#" class="cmdLink detach" rel="dragDropWindow3">detach all</a></div>
+                    <div class="window" id="dragDropWindow4">four<br/><br/><input class="input" type="text" placeholder="Text input"><a href="#" class="cmdLink hide" rel="dragDropWindow4">toggle connections</a><br/><a href="#" class="cmdLink drag" rel="dragDropWindow4">disable dragging</a><br/><a href="#" class="cmdLink detach" rel="dragDropWindow4">detach all</a></div>
+                     -->
+                    
+                </div>
+            </div>
+        <div class="columns has-text-centered is-multiline ">
+            {%for object in code %}
+            <div class="column is-one-quarter">
+                <div class="card " style="background: url('static/images/{% cycle '7' '8' '1' '2' '3' '4' '5'  %}.jpg');  background-size: cover; background-repeat: no-repeat;">
+                    <a {% if object.open_link == "Open in New Tab" %} target="_blank" {% endif %} href="{{ object.url }}">
+                        <div class="card-content">
+                            <p class="title">
+                                {{ object.title }}
+                            </p>
+                            <p class="subtitle">
+                                {{ object.description }}
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+
+                            <p class="card-footer-item">
+                                <span>
+                                    {{ object.status }}
+                                </span>
+                            </p>
+                            <!-- {% if owner %} -->
+
+                            <p class="card-footer-item">
+                                <span>
+                                    <a href="code/{{ object.id }}/edit">
+                                        <i class="em em-memo"></i>Edit</a>
+                                </span>
+                            </p>
+
+                            <!-- {% endif %} -->
+                        </footer>
+                    </a>
+                </div>
+
+
+
+            </div>
+
+
+            {% endfor%}
+        </div>
+    </div>
+</section>
+
+
+
+{%endblock content%}

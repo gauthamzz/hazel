@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+{% load widget_tweaks %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<section class="hero is-white is-bold is-small ">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container is-fluid ">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/">
+      
+                             <strong>
+                                <i class="em em-sparkles"></i>Client Space </strong>
+                        </a>
+                        <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                            <span> </span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenuHeroB" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a class="navbar-item is-active" href="/">
+                                Home
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+      
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title">
+      
+                    Client Space
+                </h1>
+      
+      
+            </div>
+        </div>
+      
+      
+      </section>
+      <body>
+            <section class="section">
+              <div class="container">
+        <div class="columns">
+                <div class="column is-4 is-offset-4 ">
+                        <div class="card">
+                                <div class="card-content">
+
+
+<form class="login field" method="POST" action="{% url 'account_login' %}">{% csrf_token %}
+        <div class="field">
+                <label class="label"> Username</label>
+                <div class="control">
+                        {% render_field form.login placeholder="Login" type="text" class="input" %}
+                </div>
+              </div>
+              
+              <div class="field">
+                    <label class="label"> Password </label>
+                    <div class="control">
+                            {% render_field form.password placeholder="Password" type="password" class="input" %}  
+                    </div>
+                  </div>
+                  
+
+   
+    {% render_field form.remember placeholder="Remember Me" type="checkbox" class="checkbox" %} Rememeber Me
+
+
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="/" />
+  {% endif %}
+
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+
+{% endif %}
+<section>
+    <br>
+        <a class="button secondaryAction" href="{{ signup_url }}">{% trans "Signup" %}</a>
+        <button class="button is-info primaryAction" type="submit">{% trans "Sign In" %}</button>
+        
+</section>
+ 
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</body>
+
+<footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                Copyright 2018
+                <strong>Client Space</strong>
+            </p>
+        </div>
+    </footer>
+
+    <!-- <input class="input" type="text" placeholder="Text input"> -->
+
+{% endblock %}
+
+
+{% comment %}
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+<p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+{% endif %}
+{% endcomment %}

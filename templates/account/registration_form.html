@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<nav class="navbar navbar-expand-lg  fixed-top scrolling-navbar  navbar-absolute bg-primary fixed-top">
+        <a class="navbar-brand" href="/">ML Jobs List</a>
+    </nav>
+    
+
+
+
+
+<div id="particles-js" style="z-index:9;position:fixed;width:100%" ></div>
+<br/><br/><br/>
+<br/><br/><br/>
+<div class="main-wrapper" >
+        <div class="container-fluid ">
+                <div class="full-page login-page section-image" filter-color="purple" data-image="">
+            <div class="row  justify-content-center align-items-center">
+                <div class="card col-lg-4 card-plain"  style="z-index:999;">
+                    <div class="view text-center">
+    
+                        <h2 class="h2-responsive mt-2">Register</h2>
+                        <hr>
+                    </div>
+                    <div class="card-body">
+                        {% load widget_tweaks %}
+                        <form method='POST' action=''>{% csrf_token %}
+                            <label for="defaultFormSubscriptionNameEx" class="grey-text">Username</label>
+                            {% render_field form.username placeholder=" " class="form-control" %}
+                            <label for="defaultFormSubscriptionNameEx" class="grey-text">Email</label>
+                            {% render_field form.email type="email" class="form-control" %}
+   
+                            <label for="defaultFormSubscriptionNameEx" class="grey-text">Password</label>
+                            {% render_field form.password1 type="password" class="form-control" %}
+                            <label for="defaultFormSubscriptionNameEx" class="grey-text">Password Again</label>
+                            {% render_field form.password2 type="password" class="form-control" %}
+   
+    
+                            <input type='submit' class="btn btn-primary btn-round btn-lg btn-block mb-3" value='submit' />
+                            <div class="pull-left">
+                              <h6>
+                                <a href="/accounts/login" class="link footer-link">Login</a>
+                              </h6>
+                              <h6 class="text">
+                                    <a href="/jobs/pp" class="link footer-link">By logging in you agree to our Privacy Policy</a>
+                                  </h6>
+                            </div>
+                        </form>
+                        
+            </div>
+            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

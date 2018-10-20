@@ -1,0 +1,82 @@
+{%extends "base.html"%} {%block content%}
+
+<section class="hero  is-bold is-unselectable ">
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <strong>
+                            <i class="em em-sparkles"></i>Client Space </strong>
+                    </a>
+                </div>
+        </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-1 is-spaced">
+                    Add a new Client
+
+                </h1>
+
+                {% load widget_tweaks %}
+                <form action="" enctype="multipart/form-data" method="POST">{% csrf_token %}
+
+                    <div>
+
+                        <div class="field">
+
+                            <div class="control">
+                                Username of client
+                                <font color="red">*</font>
+                                {% render_field form.clientfield placeholder="User name of Client" class="input" type="email" required="true" %}
+
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            To which client space fo you wish to add this client
+                            <font color="red">*</font>
+                            <br>
+
+                            <div class="select">
+                                {% render_field form.galaxy class="option"%}
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+                    <section class="hero is-medium">
+                        <div class="hero-body">
+                            <div class="container has-text-centered">
+                                <input type='submit' class="button is-success is-large" value='Add Client to workspace' />
+
+                            </div>
+                        </div>
+                    </section>
+
+
+
+                </form>
+
+            </div>
+        </div>
+
+
+
+</section>
+
+<footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                Copyright 2018
+                <strong>Client Space</strong>
+            </p>
+        </div>
+    </footer>
+
+{%endblock content%}

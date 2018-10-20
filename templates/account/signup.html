@@ -1,0 +1,115 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% load widget_tweaks %}
+{% block content %}
+
+<section class="hero is-white is-bold is-small ">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container is-fluid ">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="/">
+      
+                             <strong>
+                                <i class="em em-sparkles"></i>Client Space </strong>
+                        </a>
+                        <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                            <span> </span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenuHeroB" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a class="navbar-item is-active" href="/">
+                                Home
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+      
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title">
+      
+                    Client Space
+                </h1>
+      
+      
+            </div>
+        </div>
+      
+      
+      </section>
+
+      <body>
+            <section class="section">
+              <div class="container">
+        <div class="columns">
+                <div class="column is-4 is-offset-4 ">
+                        <div class="card">
+                                <div class="card-content">
+{% comment %} <h1>{% trans "Sign Up" %}</h1> {% endcomment %}
+
+<p>{% blocktrans %}Already have an account? <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  <div class="field">
+        <label class="label"> Username</label>
+        <div class="control">
+                {% render_field form.username placeholder="Login" type="text" class="input" %}
+        </div>
+      </div>
+      {% comment %} <div class="field">
+            <label class="label"> Email(Optional)</label>
+            <div class="control">
+                    {% render_field form.email placeholder="joe@doe.com" type="text" class="input" %}
+            </div>
+          </div> {% endcomment %}
+          <div class="field">
+                <label class="label"> Password</label>
+                <div class="control">
+                        {% render_field form.password1  type="password" class="input" %}
+                </div>
+              </div>
+              <div class="field">
+                    <label class="label"> Password agin</label>
+                    <div class="control">
+                            {% render_field form.password2 type="password" class="input" %}
+                    </div>
+                  </div>
+  {% comment %} {{ form.as_p }} {% endcomment %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <section>
+        <button class="button is-success" type="submit">{% trans "Sign Up" %} &raquo;</button>
+  </section>
+
+ 
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</body>
+
+<footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                Copyright 2018
+                <strong>Client Space</strong>
+            </p>
+        </div>
+    </footer>
+
+{% endblock %}
