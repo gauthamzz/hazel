@@ -10,6 +10,7 @@ class Repo(models.Model):
     description = models.TextField()
     saved_model = models.TextField(default="")
     last_modified = models.DateTimeField(auto_now_add=False, auto_now=True)
+    stars = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     user=models.CharField(max_length=120,default="Annonymous")
 

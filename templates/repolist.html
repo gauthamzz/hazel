@@ -1,0 +1,166 @@
+{%extends "base.html"%} {%block content%}
+
+<section class="hero is-white is-bold is-small ">
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container is-fluid ">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <strong>
+                            <i class="em em-sparkles"></i> Hazel </strong>
+                    </a>
+                    <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                        <span> </span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </div>
+                <div id="navbarMenuHeroB" class="navbar-menu">
+                    <div class="navbar-end">
+                        <a class="navbar-item is-active" href="/">
+                            Home
+                        </a>
+<!--                         
+                        <a class="navbar-item" id="save"">
+                            Save Model
+                        </a> -->
+
+                      
+                     
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title">
+
+                Hazel 
+            </h1>
+            <p class="subtitle">
+                    The User friendly Deep Learning Platfrom 
+                
+            </p>
+
+
+        </div>
+    </div>
+
+</section>
+<section class="section">
+       
+            <div class="columns">
+                <div class="column is-7">
+                        <h2 class="title has-text-centered">Easy to use Deep learning models</h2>
+                        <br>
+                        <h3 class="subtitle ">Build, train, and ship custom deep learning
+                                models using a simple visual interface.</h3>
+                        <h3 class="subtitle ">Train and Test models in a single Click.</h3>
+                        <h3 class="subtitle ">When you are done ship it as a REST api to your app.</h3>
+                        <h3 class="subtitle ">Don't write any code, but still customise the models.</h3>
+                       
+                       <hr>
+                        <div class="columns">
+                                <div class="column ">
+
+                        <h2 class="title has-text-centered">
+                                Build
+                            </h2>
+
+                                    </div>
+                                    <div class="column">
+
+                                            <h2 class="title has-text-centered">
+                                                    Train
+                                                </h2>
+                    
+                                    </div>   
+                                    <div class="column">
+
+                                            <h2 class="title has-text-centered">
+                                                    Ship
+                                                </h2>
+                    
+                                    </div> 
+                        </div>
+                        <hr>
+                        <h2 class="title has-text-centered">Explore popular repositories</h2>
+                        <br>
+                </div>
+                    <div class="column is-5">
+                            <img src="static/images/b.svg">
+                    </div>
+                </div>
+             
+        <div class="columns has-text-centered is-multiline ">
+            {%for object in code %}
+            <div class="column is-one-quarter">
+                <div class="card " style="background: url('static/images/{% cycle '7' '8' '1' '2' '3' '4' '5'  %}.jpg');  background-size: cover; background-repeat: no-repeat;">
+                    <a {% if object.open_link == "Open in New Tab" %} target="_blank" {% endif %} href="{{ object.id }}">
+                        <div class="card-content">
+                            <p class="title">
+                                {{ object.title }}
+                            </p>
+                            <p class="subtitle">
+                                {{ object.description }}
+                            </p>
+                        </div>
+                        <footer class="card-footer">
+
+                            <p class="card-footer-item">
+                                <span>
+                                        <i class="em em-star"></i>
+                                    {{ object.stars }} Stars  
+
+                                
+                                </span>
+                                <span>
+                                        <i class="em em-fork_and_knife"></i>
+                                    Fork
+
+                                    <!-- em-fork_and_knife -->
+                                </span>
+                            </p>
+                            <!-- {% if owner %} -->
+
+                            <p class="card-footer-item">
+                                <span>
+                                    <a href="code/{{ object.id }}/edit">
+                                        <i class="em em-memo"></i>Edit</a>
+                                </span>
+                            </p>
+
+                            <!-- {% endif %} -->
+                        </footer>
+                    </a>
+                </div>
+
+               
+            </div>
+
+
+            {% endfor%}
+
+          
+
+        </div>
+        
+    </div>
+
+   
+</section>
+<section>
+        <div class="columns">
+                <div class="column is-6">
+                        
+                </div>
+                    <div class="column is-6">
+                            <img src="static/images/c.svg">
+                    </div>
+                </div>
+</section>
+
+
+{%endblock content%}

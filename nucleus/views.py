@@ -107,3 +107,9 @@ def save_model(request):
 
     return HttpResponse('')
 
+def repo_list(request):
+    queryset_list=Repo.objects.all().order_by("-stars")
+    context={
+	"code":queryset_list,
+	}
+    return render(request,"repolist.html",context)
