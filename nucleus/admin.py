@@ -18,3 +18,4 @@ class CodeAdmin(admin.ModelAdmin):
     list_display = ("title", "code")
     list_filter = ("title", "code")
     search_fields = ("title","code")
+

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'nucleus',
     'widget_tweaks',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +127,4 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT=os.path.join(os.path.dirname(BASE_DIR),"static_files")
 
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240 # higher than the count of fields
