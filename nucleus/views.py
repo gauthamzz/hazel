@@ -84,11 +84,6 @@ def test_model(request):
     file  = request.POST.get('file')
     os.system('deepin-terminal -e python generated/test.py data/' + file )
     return HttpResponse('')
-    
-def api(request):
-    file  = request.POST.get('file')
-    return {1}
-
 
 def save_model(request):
     connects =literal_eval(request.POST.get('connects'))

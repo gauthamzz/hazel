@@ -407,7 +407,14 @@ $(document).ready(function() {
         useless();
     })
     $("#dense").click(function(){
+
+        var val = $("#dense").length
+        if(val) {
+            //object already exists
+            $("#canvas").append("<div class='window' id='Dense"+ String(val+1)+"'>Dense"+ String(val+1)+"<input class='input' type='text' placeholder='Text input'></div>");
+        }else{
         $("#canvas").append("<div class='window' id='Dense'>Dense<input class='input' type='text' placeholder='Text input'></div>");
+    }
         useless();
     })
     $("#generate").click(function(){
