@@ -19,6 +19,5 @@ pic = Image.open(file_name)
 Pic = np.array(pic)
 x = Pic.reshape((1,)+Pic.shape+(1,))
 val = model.predict(x)
-# val[0].argmax(axis=0)
 print(val[0].argmax(axis=0))
 

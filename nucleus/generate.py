@@ -37,6 +37,10 @@ def generate(arr):
 	f.write("from keras.models import load_model\n")
 	f.write("from autokeras import ImageClassifier\n")
 	f.write("import tensorflow\n")
+	f.write("import os\n")
+	f.write("import numpy as np\n")
+	f.write("import re\n")
+	f.write("import cv2\n")
 	temp = " "
 
 	for x in arr:
@@ -48,6 +52,25 @@ def generate(arr):
 				f.write("(x_train, y_train), (x_test, y_test) = mnist.load_data()\n")
 				f.write("x_train = x_train.reshape(x_train.shape+(1,))\n")
 				f.write("x_test = x_test.reshape(x_test.shape+(1,))\n")
+			if b[1] != "mnsit":
+				f.write("images = []\n")
+				f.write("y=[]\n")
+				f.write("directory =\""+b[1]+"\"\n")
+				f.write("for root, dirnames, filenames in os.walk(directory):\n")
+				f.write("\tfor filename in filenames:\n")
+				f.write("\t\tif re.search('\.(jpg|jpeg|png|bmp|tiff)$', filename):\n")
+				f.write("\t\t\ttry:\n")
+				f.write("\t\t\t\tfilepath = os.path.join(root, filename)\n")
+				f.write("\t\t\t\timg=cv2.imread(filepath)\n")
+				f.write("\t\t\t\tresized_image = cv2.resize(img, (30, 30))\n")   
+				f.write("\t\t\t\timages.append(resized_image)\n")
+				f.write("\t\t\t\tstring = root[len(directory)+1:]\n")
+				f.write("\t\t\t\ty.append(re.match('(.*?)/',string).group())\n")
+				f.write("\t\t\texcept:\n")
+				f.write("\t\t\t\tpass\n")   
+				f.write("x_train = np.array(images)\n")
+				f.write("y_train = np.array(y)\n")
+
 			if b[2] == "model":
 				val = b[3]
 				# print(val)			
@@ -100,7 +123,8 @@ def generate(arr):
 			f.write("\ty_encoder.fit(y_train)\n")
 			f.write("\ty_train = y_encoder.transform(y_train)\n")
 			f.write("\treturn y_train\n")
-			f.write("y_test = transform_y(y_test)\n")
+			f.write("if 'y_test' in locals():\n")
+			f.write("\ty_test = transform_y(y_test)\n")
 			f.write("y_train = transform_y(y_train)\n")
 			f.write("model = Sequential()\n")
 			f.write("model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=x_train.shape[1:]))\n")
