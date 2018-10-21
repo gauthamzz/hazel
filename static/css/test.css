@@ -967,12 +967,14 @@
   }
   
   #Input {
-  background-image: url("../images/3.jpg");
+  /* background-image: url("../images/3.jpg"); */
+  background-color: #efebc9;
   width: 140px;
   }
   
   #model {
   width: 70px;
+  background-color:#cceae6;
   }
   #Conv2D {
   width: 70px;
