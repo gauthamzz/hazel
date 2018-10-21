@@ -14,11 +14,16 @@ from django.db.models import Q
 from difflib import SequenceMatcher
 from django.views.decorators.csrf import csrf_exempt
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, generics
+from .serializers import imageSerializer
+
 import os
 from ast import literal_eval
 
 
-from .models import Repo, Code
+from .models import Repo, Code, Image
 from .forms import RepoForm, CodeForm
 from .generate import generate,order
 
@@ -113,3 +118,26 @@ def repo_list(request):
 	"code":queryset_list,
 	}
     return render(request,"repolist.html",context)
+
+
+
+class imageList(generics.CreateAPIView) :
+    queryset = Image.objects.all()
+    serializer_class = imageSerializer
+    
+    def post(self, request, format=None):
+        print(request.data)
+        serializer = imageSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # def get(self, request, format=None):
+    #     image = request.POST.get('')
+    #     image1 = Image.objects.all()
+    #     serializer = imageSerializer(data=request.data)
+    #     return Response(serializer.data)
+    
+    # def post(self):
+    #     pass

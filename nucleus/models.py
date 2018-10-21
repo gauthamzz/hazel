@@ -5,6 +5,9 @@ from django.db import models
 from django.urls import reverse
 # Create your models here.
 
+class Image(models.Model):
+    image = models.ImageField(upload_to="static/css/", null=True)
+
 class Repo(models.Model):
     title = models.CharField(max_length=60)
     description = models.TextField()
