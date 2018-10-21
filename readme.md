@@ -11,9 +11,10 @@ Don't write any code, but still customise the models.
 
 ## Why Hazel ?
 
-![](pdf(2).jpg)
-![](pdf(2)-2.jpg)
-![](pdf(2)-3.jpg)
-![](pdf(2)-4.jpg)
-![](pdf(2)-5.jpg)
-![](pdf(2)-6.jpg)
+![](pdf%20(2).jpg)
+![](pdf%20(2)-2.jpg)
+![](pdf%20(2)-3.jpg)
+![](pdf%20(2)-4.jpg)
+![](pdf%20(2)-5.jpg)
+
+# Hazel is the Solution
