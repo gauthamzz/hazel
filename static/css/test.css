@@ -968,7 +968,7 @@
   
   #Input {
   /* background-image: url("../images/3.jpg"); */
-  background-color: #efebc9;
+  background-color: #f7f06f;
   width: 140px;
   }
   
@@ -978,29 +978,36 @@
   }
   #Conv2D {
   width: 70px;
+  background-color:#cceae6;
   } 
   
   #MaxPooling2D {
   width: 70px;
+  background-color:#cceae6;
   }
   
   #Dropout {
   width: 70px;
+  background-color:#cceae6;
   }
   
   #Flatten {
   width: 70px;
+  background-color:#cceae6;
   }
   
   #Dense {
   width: 70px;
+  background-color:#cceae6;
   }
   
   #Dense2 {
     width: 70px;
+    background-color:#cceae6;
     }
   #Generate {
   width: 140px;
+  background-color:#efc9d2;
   }
   
   #Label {
@@ -1009,6 +1016,16 @@
   
   #Output {
   width: 140px;
+  }
+
+  #Mnsit {
+    width: 140px;
+    background-color: #f2c5a7;
+  }
+
+  #AutoML {
+    width: 140px;
+    background-color: #bcf29b;
   }
   
   
