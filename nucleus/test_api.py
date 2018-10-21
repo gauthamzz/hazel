@@ -10,8 +10,10 @@ from keras.models import load_model
 from autokeras.image_supervised import ImageClassifier
 from PIL import Image
 import sys
+from keras import backend as K
 
 def api_call(file_name):
+    K.clear_session()
     model = load_model('generated/my_model.h5')
     pic = Image.open(file_name)
     Pic = np.array(pic)
