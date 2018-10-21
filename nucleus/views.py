@@ -22,6 +22,7 @@ from .serializers import imageSerializer
 import os
 from ast import literal_eval
 
+from .test_api import api_call
 
 from .models import Repo, Code, Image
 from .forms import RepoForm, CodeForm
@@ -129,6 +130,10 @@ class imageList(generics.CreateAPIView) :
         print(request.data)
         serializer = imageSerializer(data=request.data)
         if serializer.is_valid():
+            # serialized_data = serializer.data
+            name =str(serializer.validated_data['image'])
+            serializer.validated_data['result'] = api_call('static/css/'+name)
+            
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

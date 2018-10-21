@@ -7,6 +7,7 @@ from django.urls import reverse
 
 class Image(models.Model):
     image = models.ImageField(upload_to="static/css/", null=True)
+    result = models.TextField(default="")
 
 class Repo(models.Model):
     title = models.CharField(max_length=60)
