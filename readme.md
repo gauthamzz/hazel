@@ -7,7 +7,7 @@
 
 > Build, train, and ship custom deep learning models using a simple visual interface.
 
-[Without backend frontend demo](http://www.gauthamzz.github.io/hazeldemo/)
+[Without backend frontend demo](http://gauthamzz.github.io/hazeldemo/)
 
 Train and Test models in a single Click.
 When you are done ship it as a REST api to your app.
